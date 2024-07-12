@@ -25,3 +25,30 @@ Steps:
 - "django-admin startproject arcitech"
 
 - 
+4. Creating Apps
+Create two Django apps, store and users, to handle the e-commerce functionality and user management.
+
+python manage.py startapp store
+python manage.py startapp users
+
+5. Setting Up Models
+Define the necessary models in the store and users apps. This includes models for products, categories, carts, orders, and users.
+
+6. Writing Views
+Create views to handle product listing, product detail, adding to cart, cart view, checkout process, user registration, login, and logout.
+
+7. Configuring Settings
+Update the project settings to include the store and users apps, configure the database, and set up static files and templates.
+
+8. Creating Superuser
+Create a superuser to access the Django admin interface:
+
+Command:
+python manage.py createsuperuser
+
+9. Running the Project
+Apply migrations and start the development server to run the project.
+
+Commands:
+python manage.py migrate
+python manage.py runserver
