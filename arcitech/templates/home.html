@@ -49,65 +49,54 @@
         <div class="col-md-3 sidebar">
           <h4>Categories</h4>
           <ul class="list-group">
-            <li class="list-group-item">Category 1</li>
-            <li class="list-group-item">Category 2</li>
-            <li class="list-group-item">Category 3</li>
+            <a href="/category/Mobiles"
+              ><li class="list-group-item">Mobiles</li></a
+            >
+            <a href="/category/Shoes"><li class="list-group-item">Shoes</li></a>
+            <a href="/category/Books"><li class="list-group-item">Books</li></a>
           </ul>
           <div class="mt-4">
             <h4>Search</h4>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search products..."
-            />
+            <form action="/search/" method="post">
+              <div class="d-flex">
+                <input
+                  type="text"
+                  name="q"
+                  class="form-control"
+                  placeholder="Search products..."
+                />{% csrf_token %}
+                <button type="submit">Search</button>
+              </div>
+            </form>
           </div>
         </div>
 
         <!-- Product Cards -->
         <div class="col-md-9 content">
           <div class="row">
+            {% for product in products %}
             <div class="col-md-4">
               <div class="card">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src="{{product.img_url}}"
                   class="card-img-top"
-                  alt="Product 1"
+                  alt="{{product.name}}"
+                  max-width="260px;"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Product 1</h5>
-                  <p class="card-text">$10.00</p>
-                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                  <h5 class="card-title text-center">{{product.name}}</h5>
+                  <div class="d-flex">
+                    <p class="card-text m-auto">${{product.price}}</p>
+                    <p class="card-text m-auto">{{product.category}}</p>
+                  </div>
+                  <br />
+                  <div class="d-flex">
+                    <a href="#" class="btn btn-primary m-auto">Add to Cart</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img
-                  src="https://via.placeholder.com/150"
-                  class="card-img-top"
-                  alt="Product 2"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Product 2</h5>
-                  <p class="card-text">$20.00</p>
-                  <a href="#" class="btn btn-primary">Add to Cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img
-                  src="https://via.placeholder.com/150"
-                  class="card-img-top"
-                  alt="Product 3"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Product 3</h5>
-                  <p class="card-text">$30.00</p>
-                  <a href="#" class="btn btn-primary">Add to Cart</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
