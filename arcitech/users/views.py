@@ -12,7 +12,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect ("/home")
+            return redirect ("/")
         else:
             messages.info(request,'invaid credentials')
             return redirect ('login')
@@ -50,4 +50,4 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('/home/') 
+    return redirect('/login') 
